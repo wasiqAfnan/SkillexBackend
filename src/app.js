@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { healthCheckRoutes, userRoutes } from "./routes/index.js";
+import errorMiddleware from "./middlewares/error.middlewares.js";
 
 const app = express();
 
@@ -18,5 +19,7 @@ app.use("/api/user", userRoutes);
 app.all(/./, (req, res) => {
     res.status(404).json({ message: "Page does not exist" });
 });
+
+app.use(errorMiddleware);
 
 export default app;
