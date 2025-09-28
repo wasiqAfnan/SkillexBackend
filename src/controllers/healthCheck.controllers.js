@@ -1,4 +1,5 @@
 import { ApiResponse } from "../utils/index.js";
+import mongoose from "mongoose";
 
 export const handleHealthCheck = (req, res) => {
     return res
