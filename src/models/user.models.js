@@ -5,7 +5,7 @@ import constants from "../constants.js";
 
 
 const userSchema = mongoose.Schema({
-    fullName: {
+        name: {
             type: "String",
             required: [true, "Name is required"]
         },
@@ -37,7 +37,7 @@ const userSchema = mongoose.Schema({
         forgotPasswordExpiry: Date,
         coursesPurchased: [
             {
-                type: Schema.Types.ObjectId,
+                type: mongoose.Schema.Types.ObjectId,
                 ref: "Course",
             },
         ],
