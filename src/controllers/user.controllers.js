@@ -73,14 +73,9 @@ export const handleRegister = async (req, res, next) => {
     } catch (error) {
         console.log("Some Error Occured: ", error);
         // If the error is already an instance of ApiError, pass it to the error handler
-        if (error instanceof ApiError) {
-            return next(error);
-        }
-
-        // For all other errors, send a generic error message
-        return next(
-            new ApiError(500, "Something went wrong during registration")
-        );
+        error instanceof ApiError ? 
+        next(error) : 
+        next(new ApiError(500, "Something went wrong during registration")); 
     }
 };
 
@@ -141,12 +136,9 @@ export const handleLogin = async (req, res, next) => {
     } catch (error) {
         console.log("Some Error Occured: ", error);
         // If the error is already an instance of ApiError, pass it to the error handler
-        if (error instanceof ApiError) {
-            return next(error);
-        }
-
-        // For all other errors, send a generic error message
-        return next(new ApiError(500, "Something went wrong during login"));
+        error instanceof ApiError ? 
+        next(error) : 
+        next(new ApiError(500, "Something went wrong during login"));
     }
 };
 
@@ -170,11 +162,8 @@ export const handleLogout = async (req, res, next) => {
     } catch (error) {
         console.log("Some Error Occured: ", error);
         // If the error is already an instance of ApiError, pass it to the error handler
-        if (error instanceof ApiError) {
-            return next(error);
-        }
-
-        // For all other errors, send a generic error message
-        return next(new ApiError(500, "Something went wrong during logout"));
+        error instanceof ApiError ? 
+        next(error) : 
+        next(new ApiError(500, "Something went wrong during logout"));
     }
 };
